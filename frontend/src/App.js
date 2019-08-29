@@ -24,40 +24,40 @@ class App extends React.Component{
         // alert("clicked "+ data.value)
         this.setState({
             selectedHappening: data.value,
-        });
-        
-        this.props.dispatch(getHappening(this.props.token, data.value))
+		});
+		console.log("getHAppenoning id=value="+data.value)
+		this.props.dispatch(getHappening(this.props.token, data.value))
+		console.log("RETURNED")
 	}
 	
   	render() {   
 		let happeningOptions = []
-        let i = 0
         let happening = {title: "Valitse tapahtuma"}
         happeningOptions.push ({
-            key: i+":"+happening.title,
-            value: happening.title,
+            key: "",
+            value: "",
             text: happening.title,
         })
-        i += 1
 
         if (this.props.happeningList) {
             for (let happening of this.props.happeningList) {
+				console.log("App render next happening:")
+				console.log(happening.title)
+				console.log(happening)
                 happeningOptions.push ({
-                    key: i+":"+happening.title,
-                    value: happening.title,
+                    key: happening._id,
+                    value: happening._id,
                     text: happening.title,
                 })
-                i += 1
             }
 		}
         if (happeningOptions.length <= 1) {
             happeningOptions= []
-            let i = 0
             let happening = {title: "Ei tapahtumia"}
             happeningOptions = [
                 {
-                    key: i+":"+happening.title,
-                    value: happening.title,
+                    key: "",
+                    value: "",
                     text: happening.title,    
                 }
             ]

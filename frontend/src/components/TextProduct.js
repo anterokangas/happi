@@ -7,40 +7,34 @@ import {connect} from 'react-redux';
 class TextProduct extends React.Component {
 
     // constructor (props) {
-    //     // console.log("Product: props="+JSON.stringify(props))
 
     //     super(props)
-    //     this.state = {
-    //         ...this.state, 
-    //         order:{}
-    //     }
+    //     // this.state = {
+    //     //     order: {}
+    //     // }
     // }
 
     onChange = (event) => {
-        console.log("TextProduct onChange/Blue name="
-                    + event.target.name 
-                    + " value="
-                    + event.target.value)
+        event.preventDefault()
         let state = {
-            ...this.state,
+            // "id": event.target.id,
+            "type": event.target.type,
+            "name": event.target.name,
+            "value": event.target.value,
         }
-        if (!state.order) {
-            state.order = {}
-        }
-        state.order[event.target.name] = event.target.value
+        // console.log("tag changed state=")
+        // console.log(state)
         this.setState(state)
     }
 
     render () {
-        console.log("\n=====\nTextProduct.render props=")
-        console.log(this.props)
+        // console.log("\n=====\nTextProduct.render props=")
+        // console.log(this.props)
         let product = this.props.product 
         let required = false
         if (product.required) required = product.required
         let value = ""
-        if (this.state && this.state.order && this.state.order[product.name]) {
-            value = this.state.order[product.name]
-        }
+        value = this.props.value
         let comment = ""
         if (product.comment) comment = <p>{product.comment}</p>
         return (
@@ -52,6 +46,7 @@ class TextProduct extends React.Component {
             <span className="required">*</span>
             <input type={product.type.toLowerCase()}
                    name={product.name}
+                //    id={product.id}
                    required={required}
                    className="form-control"
                    onChange={this.onChange}
@@ -64,13 +59,14 @@ class TextProduct extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("TextProduct: mapStateToProps: state="+state+":"+JSON.stringify(state))
+    console.log("TextProduct: mapStateToProps: state=")
+    console.log(state)
     return {
         ...state,
-        theHappening: state.theHappening,
+        selectedHappening: state.selectedHappening,
         isLogged: state.isLogged,
-        task: state.task,
-        order: {...state.order},
+        // task: state.task,
+        // order: state.order,
     }
 }
 

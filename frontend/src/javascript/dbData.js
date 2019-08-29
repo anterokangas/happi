@@ -52,158 +52,142 @@ export const happenings = {
                 "required": true},
                 ]
             }, 
-            {"header": "Henkilötiedot2",
+            {"header": "Ilmoittautumistiedot",
                 "products": [
-                {"name": "Etunimi",
-                "type": "text",
-                "required": true},
-                {"name": "Sukunimi",
-                "type": "text",
-                "required": true},
-                {"name": "Puhelin",
-                "type": "text",
-                "required": true},
-                {"name": "Sähköposti",
-                "type": "email",
-                "required": true},
+                {"name": "Yhdistys",
+                    "type": "select",
+                    "required": true,
+                    "properties": [
+                        "Ahjolan Tanhuajat",
+                        "Helsingin Pitäjän Tanhuujat",
+                        "Nokian Kansantanssin Ystävät",
+                        "Tampereen Työväenopiston Tanhuajat",
+                    ],
+                    // "extra": "onchange=\"makeChoices('selectGroups', this.value, groups, 'required')\"",
+                    "comment": "Jos yhdistyksesi ei ole luettelossa, pyydä ryhmäsi vetäjää luomaan sellainen"
+                },
+                {"name": "Ryhmä",
+                "type": "div",
+                "required": true,
+                "id": "selectGroups",
+                "initial": "Valitse ensin ryhmä",
+                "comment": "Jos ryhmäsi ei ole luettelossa, pyydä ryhmäsi vetäjää luomaan sellainen"
+                },  
+                {"name": "Missä rool(e)issa osallistut",
+                "type": "checkbox",
+                "required": true,
+                "properties": [
+                    "Tanssija",
+                    "Soittaja", 
+                    "Ohjaaja", 
+                    "Ryhmän yhteyshenkilö", 
+                    "Muu"
+                    ]
+                },
+                {"name": "Osallistun",
+                    "type": "checkbox",
+                    "properties": [
+                    "Kulkueeseen",
+                    "Kenttäohjelmaan"       
+                    ]
+                },
+                {"name": "Osallistumismaksu",
+                    "type": "subtotal",
+                    "value": 80
+                }, 
                 ]
-             },
-            // {"header": "Ilmoittautumistiedot",
-            //     "products": [
-            //     {"name": "Yhdistys",
-            //         "type": "select",
-            //         "required": true,
-            //         "properties": [
-            //             "Ahjolan Tanhuajat",
-            //             "Helsingin Pitäjän Tanhuujat",
-            //             "Nokian Kansantanssin Ystävät",
-            //             "Tampereen Työväenopiston Tanhuajat",
-            //         ],
-            //         // "extra": "onchange=\"makeChoices('selectGroups', this.value, groups, 'required')\"",
-            //         "comment": "Jos yhdistyksesi ei ole luettelossa, pyydä ryhmäsi vetäjää luomaan sellainen"
-            //     },
-            //     {"name": "Ryhmä",
-            //     "type": "div",
-            //     "required": true,
-            //     "id": "selectGroups",
-            //     "initial": "Valitse ensin ryhmä",
-            //     "comment": "Jos ryhmäsi ei ole luettelossa, pyydä ryhmäsi vetäjää luomaan sellainen"
-            //     },  
-            //     {"name": "Missä rool(e)issa osallistut",
-            //     "type": "checkbox",
-            //     "required": true,
-            //     "properties": [
-            //         "Tanssija",
-            //         "Soittaja", 
-            //         "Ohjaaja", 
-            //         "Ryhmän yhteyshenkilö", 
-            //         "Muu"
-            //         ]
-            //     },
-            //     {"name": "Osallistun",
-            //         "type": "checkbox",
-            //         "properties": [
-            //         "Kulkueeseen",
-            //         "Kenttäohjelmaan"       
-            //         ]
-            //     },
-            //     {"name": "Osallistumismaksu",
-            //         "type": "subtotal",
-            //         "value": 80
-            //     }, 
-            //     ]
-            // },
-            // {"header": "Majoitus",
-            // "subtotal": "Majoitus yhteensä",
-            // "products": [
-            //     {"name": "Valitse majoitustapasi",
-            //         "type": "radio",
-            //         "required": true,
-            //         "properties": [
-            //         "Koulumajoitus pe/la, la/su: 25 €",
-            //         "Koulumajoitus la/su: 20 €",
-            //         "Matkailuauto- tai matkailuvaunupaikka: 15 €",
-            //         "Järjestän itse majoitukseni: 0 €"
-            //         ]
-            //     },
-            //     {"name": "Majoitus yhteensä",
-            //         "type": "subtotal",
-            //         "value": 0
-            //     }, 
-            //  ]
-            // },
-            // {"header": "Ruokailu",
-            //     "subtotal": "Ruokailu yhteensä",
-            //     "products": [
-            //     {"name": "Valitse ateriasi",
-            //         "type": "checkbox",
-            //         "properties": [
-            //         "Pe-iltapala: 5 €",
-            //         "La-aamupala: 7 €",                 
-            //         "La-lounas: 7 €",
-            //         "La-päivällinen: 10 €",
-            //         "La-iltapala: 5 €",
-            //         "Su-aamupala: 7 €",
-            //         "Su-lounas: 7 €",
-            //         ]
-            //     },
-            //     {"name": "Ruokailu yhteensä",
-            //         "type": "subtotal",
-            //         "value": 0
-            //     }, 
-            //     {"name": "Erityisruokavaliosi",
-            //         "type": "checkbox",
-            //         "properties": [
-            //         "Vähälaktoositon",
-            //         "Maidoton",
-            //         "Vilja-allergia"
-            //         ],
-            //         "comment": "Huom! Erityisruokavaliotietoasi käytetään vain erityisaterioiden tilaamiseksi. Henkilökohtaisia erityisruokavaliotietojasi ei välitetä eteenpäin."
-            //     },
-            //     {"name": "Henkilökohtainen erityisruokavaliosi",
-            //      "type": "textarea",
-            //      "rows": 3,
-            //      "cols": 72,
-            //      "comment": " Huom! Jos ilmoitat henkilökohtaisen ruokavaliosi, niin valitsemiesi ruokailujen yheydessä järjestetään sinulle nimelle varustettu ateria."
-            //     }                   
-            //     ]
-            // },
-            // {"header": "Aktiviteetit",
-            //  "subtotal": "Aktiviteetit yhteensä",
-            //  "products": [
-            //     {"name": "Valitse aktiviteetit",
-            //      "type": "checkbox",
-            //      "properties": [
-            //         "Pe-pelimannitanssit: 5 €",
-            //         "La-Kansantanssikonsertti: 10 €",
-            //         "La-Opastettu puistokierros: 0 €",
-            //      ]
-            //     },
-            //     {"name": "Aktiviteetit yhteensä",
-            //      "type": "subtotal",
-            //      "value": 0
-            //     }
-            //     ],
-            // },
-            // {"header": "Ostokset",
-            //  "subtotal": "Ostokset yhteensä",
-            //  "products": [
-            //      {"name": "Pinssi: 5 €",
-            //       "type": "number",
-            //       "min": 0
-            //      },
-            //      {"name": "Juomapullo: 10 €",
-            //       "type": "number"
-            //      },
-            //      {"name": "Huivi: 15 €",
-            //       "type": "number"
-            //      },
-            //      {"name": "Ostokset yhteensä",
-            //       "type": "subtotal",
-            //       "value": 0
-            //      }
-            //  ]
-            // }
+            },
+            {"header": "Majoitus",
+            "subtotal": "Majoitus yhteensä",
+            "products": [
+                {"name": "Valitse majoitustapasi",
+                    "type": "radio",
+                    "required": true,
+                    "properties": [
+                    "Koulumajoitus pe/la, la/su: 25 €",
+                    "Koulumajoitus la/su: 20 €",
+                    "Matkailuauto- tai matkailuvaunupaikka: 15 €",
+                    "Järjestän itse majoitukseni: 0 €"
+                    ]
+                },
+                {"name": "Majoitus yhteensä",
+                    "type": "subtotal",
+                    "value": 0
+                }, 
+             ]
+            },
+            {"header": "Ruokailu",
+                "subtotal": "Ruokailu yhteensä",
+                "products": [
+                {"name": "Valitse ateriasi",
+                    "type": "checkbox",
+                    "properties": [
+                    "Pe-iltapala: 5 €",
+                    "La-aamupala: 7 €",                 
+                    "La-lounas: 7 €",
+                    "La-päivällinen: 10 €",
+                    "La-iltapala: 5 €",
+                    "Su-aamupala: 7 €",
+                    "Su-lounas: 7 €",
+                    ]
+                },
+                {"name": "Ruokailu yhteensä",
+                    "type": "subtotal",
+                    "value": 0
+                }, 
+                {"name": "Erityisruokavaliosi",
+                    "type": "checkbox",
+                    "properties": [
+                    "Vähälaktoositon",
+                    "Maidoton",
+                    "Vilja-allergia"
+                    ],
+                    "comment": "Huom! Erityisruokavaliotietoasi käytetään vain erityisaterioiden tilaamiseksi. Henkilökohtaisia erityisruokavaliotietojasi ei välitetä eteenpäin."
+                },
+                {"name": "Henkilökohtainen erityisruokavaliosi",
+                 "type": "textarea",
+                 "rows": 3,
+                 "cols": 72,
+                 "comment": " Huom! Jos ilmoitat henkilökohtaisen ruokavaliosi, niin valitsemiesi ruokailujen yheydessä järjestetään sinulle nimelle varustettu ateria."
+                }                   
+                ]
+            },
+            {"header": "Aktiviteetit",
+             "subtotal": "Aktiviteetit yhteensä",
+             "products": [
+                {"name": "Valitse aktiviteetit",
+                 "type": "checkbox",
+                 "properties": [
+                    "Pe-pelimannitanssit: 5 €",
+                    "La-Kansantanssikonsertti: 10 €",
+                    "La-Opastettu puistokierros: 0 €",
+                 ]
+                },
+                {"name": "Aktiviteetit yhteensä",
+                 "type": "subtotal",
+                 "value": 0
+                }
+                ],
+            },
+            {"header": "Ostokset",
+             "subtotal": "Ostokset yhteensä",
+             "products": [
+                 {"name": "Pinssi: 5 €",
+                  "type": "number",
+                  "min": 0
+                 },
+                 {"name": "Juomapullo: 10 €",
+                  "type": "number"
+                 },
+                 {"name": "Huivi: 15 €",
+                  "type": "number"
+                 },
+                 {"name": "Ostokset yhteensä",
+                  "type": "subtotal",
+                  "value": 0
+                 }
+             ]
+            }
         ]
     }
 }

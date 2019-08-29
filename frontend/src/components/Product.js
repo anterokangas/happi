@@ -20,7 +20,7 @@ class Product extends React.Component {
 
     render () {
         console.log("Product.render: props=")
-        console.log(this.props)
+        // console.log(this.props)
     
         switch (this.props.product.type.toUpperCase()) {
             case "TEXT":
@@ -43,7 +43,8 @@ class Product extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("Product: mapStateToProps: state="+state+":"+JSON.stringify(state))
+    console.log("Product: mapStateToProps: state=")
+    console.log(state)
     return {
         ...state,
         theHappening: state.theHappening,

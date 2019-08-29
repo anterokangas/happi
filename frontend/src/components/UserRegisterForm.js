@@ -37,6 +37,12 @@ class UserRegisterForm extends React.Component {
 	// 		price: 0
 	// 	})
 	// }
+
+	onSaveOrder = (event) => {
+		alert("Save Clicked")
+		// let order = {}
+
+	}
 	
 	render() {
 		
@@ -46,7 +52,7 @@ class UserRegisterForm extends React.Component {
 			return <EmptyForm/>
 		} 
 		let happening = this.props.happening[0]
-		console.log("happening=")
+		// console.log("happening=")
 		console.log(happening)
 		console.log(happening.parts)
 		return (
@@ -66,7 +72,10 @@ class UserRegisterForm extends React.Component {
 					</h3>
 				</Form.Field>
 				
-				<Button type="submit">Talleta lomake</Button>
+				<Button onClick={this.onSaveOrder}
+					    disabled={!this.props.isLogged}
+				>Talleta lomake</Button>
+				<Button type="submit">Vahvista</Button>
 			</Form> 
 			
 		)		
@@ -77,7 +86,7 @@ class UserRegisterForm extends React.Component {
 
 const mapStateToProps = (state) => {
     console.log("UserRegisterForm: mapStateToProps: state=")
-    console.log(state)
+    // console.log(state)
 	let error = ""
 	if(state.happening.error.length > 0) {
 		error = state.happening.error
@@ -87,12 +96,12 @@ const mapStateToProps = (state) => {
 	}
     return {
         ...state,
-		token: state.login.token,
+		// token: state.login.token,
 		selectedHappening: state.happening.selectedHappening,
 		happening: state.happening.happening,
-		happeningList: state.happening.happeningList,
+		// happeningList: state.happening.happeningList,
         isLogged: state.login.isLogged,
-        loading: state.login.loading,
+        // loading: state.login.loading,
         error: error,
     }
 }

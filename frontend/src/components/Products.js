@@ -18,20 +18,23 @@ class Products extends React.Component {
     // }
 
     render () {
-        console.log("Products.render: props=")
+        console.log("Products.render: props.products=")
+        console.log(this.props.products)
         console.log(this.props)
         let tmpProducts = []
-        for (let product of this.props.products) {
-            tmpProducts.push(
-                (
-                <Product key={product.name}
-                         happening={this.props.happening}
-                         parts={this.props.parts}
-                         part={this.props.part}
-                         products={this.props.products}
-                         product={product}/>
+        if (this.props.products) {
+            for (let product of this.props.products) {
+                tmpProducts.push(
+                    (
+                    <Product key={product.name}
+                            happening={this.props.happening}
+                            parts={this.props.parts}
+                            part={this.props.part}
+                            products={this.props.products}
+                            product={product}/>
+                    )
                 )
-            )
+            }
         }
         return (
             <div>
@@ -42,7 +45,8 @@ class Products extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("Products: mapStateToProps: state="+state+":"+JSON.stringify(state))
+    console.log("Products: mapStateToProps: state=")
+    // console.log(state)
     return {
         ...state,
         theHappening: state.theHappening,

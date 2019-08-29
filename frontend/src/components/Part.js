@@ -19,7 +19,7 @@ class Part extends React.Component {
 
     render () {
         console.log("Part.render: props=")
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <fieldset>
             <legend>{this.props.part.header}</legend>
@@ -34,7 +34,7 @@ class Part extends React.Component {
 
 const mapStateToProps = (state) => {
     console.log("Part mapStateToProps: state=")
-    console.log(state)
+    // console.log(state)
 	let error = ""
 	if(state.happening.error.length > 0) {
 		error = state.happening.error

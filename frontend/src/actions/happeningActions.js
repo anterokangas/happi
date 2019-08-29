@@ -15,6 +15,10 @@ export const LOGOUT_DONE = "LOGOUT_DONE"
 
 export const SAVE_HAPPENINGS_SUCCESS = "SAVE_HAPPENINGS_SUCCESS"
 export const SAVE_HAPPENINGS_FAILED = "SAVE_HAPPENINGS_FAILED"
+
+export const SAVE_DETAILED_HAPPENINGS_SUCCESS = "SAVE_DETAILED_HAPPENINGS_SUCCESS"
+export const SAVE_DETAILED_HAPPENINGS_FAILED = "SAVE_DETAILED_HAPPENINGS_FAILED"
+
 export const GET_HAPPENING_LIST_SUCCESS = "GET_HAPPENING_LIST_SUCCESS"
 export const GET_HAPPENING_LIST_FAILED = "GET_HAPPENING_LIST_FAILED"
 export const GET_HAPPENING_SUCCESS = "GET_HAPPENING_SUCCESS"
@@ -178,6 +182,46 @@ export const onSaveHappenings = (token) => {
 }
 
 
+export const onSaveDetailedHappenings = (token) => {
+	console.log("happeningActions:  onSaveDetailedHappenings token=")
+	console.log("token")
+	console.log("happenings:")
+	console.log(happenings)
+	return dispatch => {
+		 let request = {
+			  method: "POST",
+			  mode: "cors",
+			  credentials: "include",
+			  headers: {"Content-Type":  "application/json",
+				 	   "token":  token},
+			  body: JSON.stringify(happenings)
+		  }
+		  console.log("dispatch fetchLoading")
+		  dispatch(fetchLoading());
+		//   console.log(request.body)
+		  return fetch("/api/detailedhappenings", request).then(response => {
+			  console.log("response")
+			  console.log(response)
+				if(response.ok) {
+					dispatch(saveDetailedHappeningsSuccess());
+					dispatch(getShoppingList(token));
+					dispatch(getHappeningList());
+					// history.push("/list");
+				} else {
+					dispatch(saveDetailedHappeningsFailed("Server responded with status: "
+					+ response.statusText));
+					dispatch(loadingDone());
+
+				}
+		  }).catch(error => {
+				dispatch(saveDetailedHappeningsFailed(error));
+				dispatch(loadingDone());
+		  })
+		
+		}
+}
+
+
 
 export const getHappeningList = (token) => {
 	console.log("getHappeningList")
@@ -213,8 +257,8 @@ export const getHappeningList = (token) => {
 		}
 }
 
-export const getHappening = (token, title) => {
-	console.log("getHappening title="+title)
+export const getHappening = (token, id) => {
+	console.log("happeningActions getHappening id="+id)
 	return dispatch => {
 		let request = {
 			  method: "GET",
@@ -224,10 +268,11 @@ export const getHappening = (token, title) => {
 						token: token,}
 		  }
 		dispatch(fetchLoading());
-		
-		return fetch("/api/happening/"+title, request).then(response => {
+		console.log("AFTER fetch load")
+		return fetch("/api/happening/"+id, request).then(response => {
 				dispatch(loadingDone());
-				
+				console.log("happeningActions getHappening response=")
+				console.log(response)
 				if(response.ok) {
 					response.json().then(data => {
 						dispatch(getHappeningSuccess(data))
@@ -314,6 +359,19 @@ const saveHappeningsSuccess = () => {
 const saveHappeningsFailed = (error) => {
 	return {
 		type: SAVE_HAPPENINGS_FAILED,
+		error: error
+	}
+}
+
+const saveDetailedHappeningsSuccess = () => {
+	return {
+		type: SAVE_DETAILED_HAPPENINGS_SUCCESS
+	}
+}
+
+const saveDetailedHappeningsFailed = (error) => {
+	return {
+		type: SAVE_DETAILED_HAPPENINGS_FAILED,
 		error: error
 	}
 }

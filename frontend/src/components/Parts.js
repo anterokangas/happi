@@ -21,7 +21,7 @@ class Parts extends React.Component {
  
     render () {
         console.log("Parts.render: props=")
-        console.log(this.props)
+        // console.log(this.props)
         let tmpParts = []
         if(!this.props.parts) {
             return (
@@ -48,7 +48,7 @@ class Parts extends React.Component {
 
 const mapStateToProps = (state) => {
     console.log("Parts mapStateToProps: state=")
-    console.log(state)
+    // console.log(state)
 	let error = ""
 	if(state.happening.error.length > 0) {
 		error = state.happening.error

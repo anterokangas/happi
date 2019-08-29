@@ -4,6 +4,7 @@ import {List, Header} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {onLogout} from '../actions/loginActions';
 import {onSaveHappenings} from '../actions/happeningActions';
+import {onSaveDetailedHappenings} from '../actions/happeningActions';
 // import {doUserRegister} from '../actions/happeningActions';
 
 
@@ -24,6 +25,11 @@ class NavBar extends React.Component {
         this.props.dispatch(onSaveHappenings(this.props.token))
     }
     
+    saveDetailedHappenings = () => {
+        console.log("save detailed happenings clicked")
+        this.props.dispatch(onSaveDetailedHappenings(this.props.token))
+    }
+    
     render() {
         let status = "Happy - Happening Register and Marketplace App"
         if (this.props.loading) {
@@ -42,6 +48,7 @@ class NavBar extends React.Component {
                 <List.Item><Link to="/form">Add to List</Link></List.Item>
                 <List.Item><Link to="/" onClick={this.loginregister}>Login/Register</Link></List.Item>
                 <List.Item><Link to="/" onClick={this.logout}>Logout</Link></List.Item>
+                <List.Item><Link to="/" onClick={this.saveDetailedHappenings}>Save Detailed Happenings</Link></List.Item>
                 <List.Item><Link to="/" onClick={this.saveHappenings}>Save Happenings</Link></List.Item>
                 {/* <List.Item><Link to="/" onClick={this.getHappeningList}>Get Happenings</Link></List.Item> */}
                 </List>

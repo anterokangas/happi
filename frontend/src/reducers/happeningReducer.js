@@ -10,6 +10,8 @@ import {
 	LOGOUT_DONE,
 	SAVE_HAPPENINGS_SUCCESS,
 	SAVE_HAPPENINGS_FAILED,
+	SAVE_DETAILED_HAPPENINGS_SUCCESS,
+	SAVE_DETAILED_HAPPENINGS_FAILED,
 	GET_HAPPENING_LIST_SUCCESS,
 	GET_HAPPENING_LIST_FAILED,
 	GET_HAPPENING_SUCCESS,
@@ -136,6 +138,24 @@ const happeningReducer = (state = initialState, action) => {
 			return tempState;
 
 		case SAVE_HAPPENINGS_FAILED: 
+			tempState = {
+				...state,
+				error: action.error
+			}
+			saveToStorage(tempState);		
+			return tempState;
+
+
+		
+		case SAVE_DETAILED_HAPPENINGS_SUCCESS: 
+		tempState = {
+			...state,
+			error: ""
+		}
+		saveToStorage(tempState);		
+		return tempState;
+
+		case SAVE_DETAILED_HAPPENINGS_FAILED: 
 			tempState = {
 				...state,
 				error: action.error
